@@ -40,14 +40,25 @@ for (let i = 0; i < game.gyms.length; i++) {
 console.log(game.gyms)
 
 for (let i = 0; i < game.party.length; i++) {
-    if (pokemon[i].number === 1) {
-        game.party.splice(i, 1, pokemon[i + 1] )
-    } else if (pokemon[i].number === 4) {
-        game.party.splice(i, 1, pokemon[i + 1] )
-    } else if (pokemon[i].number === 7) {
-        game.party.splice(i, 1, pokemon[i + 1] )
-    } else if (pokemon[i].number === 25) {
-        game.party.splice(i, 1, pokemon[i + 1] )
+    let currentPokemon = game.party[i]
+
+    if (currentPokemon.number === 1) {
+        game.party.splice(i, 1, pokemon[1])
+        pokemon[1].starter = true
+    } 
+    if (currentPokemon.number === 4) {
+        game.party.splice(i, 1, pokemon[4])
+        pokemon[4].starter = true
+    } 
+    if (currentPokemon.number === 7) {
+        game.party.splice(i, 1, pokemon[7])
+        pokemon[7].starter = true
+
+    }
+    if (currentPokemon.number === 25) {
+        game.party.splice(i, 1, pokemon[25])
+        pokemon[25].starter = true
+
     }
     
 }
