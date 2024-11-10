@@ -17,8 +17,102 @@ const game = {
       { name: "pokeball", quantity: 8 },
       { name: "rare candy", quantity: 99 },
     ],
+    difficulty: 'Easy',
+
 }
  
+let starterPokemon
+for (let i = 0; i < pokemon.length; i++) {
+    if (pokemon[i].starter === true) {
+        starterPokemon = pokemon[i]
+        game.party.push(starterPokemon)
+        if (pokemon[i].HP >= 35){
+            game.party.push(pokemon[i])
+        }
+    }
+}
 
-// console.dir(pokemon, { maxArrayLength: null })
-// console.log(game)
+for (let i = 0; i < game.gyms.length; i++) {
+    if (game.gyms[i].difficulty < 3) {
+        game.gyms[i].completed = true
+    }
+}
+console.log(game.gyms)
+
+for (let i = 0; i < game.party.length; i++) {
+    if (pokemon[i].number === 1) {
+        game.party.splice(i, 1, pokemon[i + 1] )
+    } else if (pokemon[i].number === 4) {
+        game.party.splice(i, 1, pokemon[i + 1] )
+    } else if (pokemon[i].number === 7) {
+        game.party.splice(i, 1, pokemon[i + 1] )
+    } else if (pokemon[i].number === 25) {
+        game.party.splice(i, 1, pokemon[i + 1] )
+    }
+    
+}
+console.log(game.party)
+
+
+for (let i = 0; i < game.party.length; i++) {
+    console.log(game.party[i].name);
+}
+
+for (let i = 0; i < pokemon.length; i++) {
+    if (pokemon[i].starter === true) {
+      console.log(pokemon[i].name);
+    }
+}
+
+game.catchPokemon = function (pokemonObj) {
+    this.party.push(pokemonObj)
+}
+game.catchPokemon(pokemon[50])
+
+let pokeball
+game.catchPokemon = function (pokemonObj) {
+    this.party.push(pokemonObj)
+    this.items[0].quantity -= 1
+}
+game.catchPokemon(pokemon[50])
+console.log(game.items)
+
+for (let i = 0; i < game.gyms.length; i++) {
+    if (game.gyms[i].difficulty < 6) {
+      game.gyms[i].completed = true;
+    }
+}
+console.log(game.gyms)
+
+game.gymStatus = function() {
+    const gymTally = {
+      completed: 0,
+      incomplete: 0
+    };
+  
+    for (let i = 0; i < game.gyms.length; i++) {
+      if (game.gyms[i].completed) {
+        gymTally.completed += 1
+      } else {
+        gymTally.incomplete += 1
+      }
+    }
+
+    console.log(gymTally);
+}
+game.gymStatus();
+  
+game.partyCount = function() {
+    return game.party.length
+} 
+console.log(game.partyCount())
+
+for (let i = 0; i < game.gyms.length; i++) {
+    if (game.gyms[i].difficulty < 8) {
+      game.gyms[i].completed = true;
+    }
+}
+console.log(game.gyms);
+  
+console.dir(pokemon, { maxArrayLength: null })
+console.log(game)
